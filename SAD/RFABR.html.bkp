@@ -1,0 +1,628 @@
+
+<html lang="en">
+
+<head>
+<!-- Page: RFABR, LastUpdate: 2020_07_13_083545 -->
+<title>TELA DE ABERTURA DO SAD RF</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.48">
+
+<!-- Css Files -->
+<link rel="stylesheet" href="../Styles/App.css"/>
+<link rel="stylesheet" href="../Styles/RFABR.css"/>
+
+<link rel="stylesheet" href="../Styles/sadrf.css?1594662898" />
+
+<!-- Js Files -->
+<script src="../Scripts/InnovationBrowser.js"></script>
+<script src="../Scripts/InnovationTreeView.js"></script>
+<script src="../Scripts/Mozilla.js"></script>
+<script src="../Scripts/Innovation.js"></script>
+<script src="../Scripts/InnovationPage.js"></script>
+<script src="../Scripts/Msg.js"></script>
+<script src="../Scripts/InnovationAjax.js"></script>
+<script src="../Scripts/InnovationPanel.js"></script>
+<script src="../Scripts/InnovationPopup.js"></script>
+<script src="../Scripts/InnovationGrid.js"></script>
+</head>
+<body id = "body" onload="js.onLoad();"onfocus="js.focusHandler();" onkeydown="js.onKeyDown(event);" onkeyup="js.onKeyUp(event);" style = "background-color:#FFFFFF;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;left:0px;top:0px;" >
+<form Name = "form" id = "form" method = "post" CurrentUrl = "RFABR" LastKeyCode = "" LastShiftKey = "" LastAltKey = "" LastCtrlKey = "" LastAction = "" statusMsg = "" decimalSeparator = "," groupingSeparator = "." exception = "false" exceptionMessage = "" traceMsg = "" onF9 = "js.showBoundPopup()" onAltF12 = "js.resetValidate()" onArrowUp = "js.rollUp()" onArrowDown = "js.rollDown()" onHome = "setFocus('TL_USUARIO');" onEnd = "setFocus('Button1_FX');" onEnter = "legacySubmit()" onclick="js.onClick();" onkeydown="js_onkey();" onsubmit="js_submitHandler();">
+<style>
+#TL_USUARIO, #XTL_SENHA, #TL_EMP, #TL_FILIAL_WM {
+	height: 22px !important;
+}
+
+</style>
+<label name="numeroVersao" id="numeroVersao" class="label" style = "position:absolute;top:75px;left:578px;height:21px;width:62px;color:#FFFFFF;font-family:Verdana;font-size:12px;font-style:normal;font-weight:bold;visibility:Hidden;">numeroVersao</label>
+<label name="infoSAD" id="infoSAD" class="label" style = "position:absolute;top:120px;left:278px;height:21px;width:100px;color:#FFFFFF;font-family:Verdana;font-size:12px;font-style:normal;font-weight:bold;visibility:Hidden;">Versão Jenkins : numeroVersao
+Base de Dados : SADUAT09
+Ambiente : http://localhost:8080/DBSAD/servlet/RFABR
+Sistema : SAD-VAREJO
+</label>
+<input type="text" name="syncToken" id="syncToken" class="textbox" value="" originalClass="Textbox" datatype="Text" originalValue="" mask="" style = "position:absolute;top:10px;left:10px;height:10px;width:10px;visibility:Hidden;" onblur="js.autoValidate(this);" onfocus="js.onFocus(this);">
+<input type="hidden"  name="TL_FILIAL" id="TL_FILIAL" maxLength="4" class="textbox" class="inputUpper" value="" originalClass="Textbox" datatype="Text" originalValue="" CaseRestriction="UpperCase" mask="" style = "position:absolute;top:190px;left:1px;height:22px;width:49px;background-color:#FFFFFF;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;" onblur="js.autoValidate(this);" onfocus="js.onFocus(this);" onKeyPress="js.onKeyPress(this, event);" onkeyup="js.validateCase(this, event);">
+<label name="Label1" id="Label1" class="label" style = "position:absolute;top:152px;left:33px;height:17px;width:58px;background-color:#FFFFFF;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;white-space:NoWrap;">Filial BIG:</label>
+<input type="text" name="TL_EMP" id="TL_EMP" maxLength="1" class="textbox" readonly value="1" originalClass="Textbox" datatype="Number" originalValue="1" mask="#" style = "position:absolute;top:114px;left:104px;height:22px;width:22px;background-color:#C0C0C0;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;text-align:Right;" onblur="js.autoValidate(this);" onfocus="js.onFocus(this);" onKeyPress="js.onKeyPress(this, event);" onkeyup="focusNextTab(this, event);">
+<label name="Label2" id="Label2" class="label" style = "position:absolute;top:114px;left:33px;height:17px;width:59px;background-color:#FFFFFF;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;white-space:NoWrap;">Empresa:</label>
+<input type="password"  name="XTL_SENHA" id="XTL_SENHA" maxLength="8" class="textbox" tabindex="200" value="" originalClass="Textbox" datatype="Text" originalValue="" mask="" style = "position:absolute;top:76px;left:104px;height:22px;width:62px;background-color:#FFFFFF;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;" onblur="js.autoValidate(this);" onfocus="js.onFocus(this);" onkeyup="focusNextTab(this, event);">
+<input type="text" name="TL_USUARIO" id="TL_USUARIO" maxLength="6" class="textbox" tabindex="100" value="" originalClass="Textbox" datatype="Number" originalValue="" mask="######" style = "position:absolute;top:38px;left:104px;height:22px;width:58px;background-color:#FFFFFF;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;text-align:Right;" onblur="js.autoValidate(this);" onfocus="js.onFocus(this);" onKeyPress="js.onKeyPress(this, event);" onkeyup="focusNextTab(this, event);">
+<label name="Label6" id="Label6" class="label" style = "position:absolute;top:1px;left:0px;height:20px;width:219px;background-color:#FF0000;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;white-space:NoWrap;"> </label>
+<label name="Label8" id="Label8" class="label" style = "position:absolute;top:76px;left:33px;height:17px;width:47px;background-color:#FFFFFF;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;white-space:NoWrap;">Senha :</label>
+<label name="Label9" id="Label9" class="label" style = "position:absolute;top:38px;left:33px;height:17px;width:59px;background-color:#FFFFFF;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;white-space:NoWrap;">Usuário:</label>
+<label name="Label10" id="Label10" class="label" style = "position:absolute;top:0px;left:216px;height:285px;width:3px;background-color:#FF0000;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;white-space:NoWrap;"> </label>
+<span name="_Image4Span" style = "overflow:hidden;position:absolute;top:76px;left:0px;height:19px;width:16px;"><img name="Image4" id="Image4" src="../Images/DBSAD/im_cad.gif" originalClass="Image" style = "position:absolute;background-color:#FFFFFF;font-family:Verdana;font-style:normal;font-weight:normal;height:19px;width:16px;" onclick="if (js.hasPendingError(this, event)) return;"></span>
+<input type="text" name="PAGEMSG" id="PAGEMSG" class="textbox" class="inputUpper" readonly tabindex="-1" value="" originalClass="Textbox" datatype="Text" originalValue="" CaseRestriction="UpperCase" mask="" style = "position:absolute;top:266px;left:-1px;height:19px;width:216px;background-color:#000000;border-style:None;border-color:FFFFFF;color:#FF0000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;" onblur="js.autoValidate(this);" onfocus="js.onFocus(this);" onKeyPress="js.onKeyPress(this, event);" onkeyup="js.validateCase(this, event);">
+<input type="hidden"  name="TL_SENHA" id="TL_SENHA" maxLength="8" class="textbox" value="" originalClass="Textbox" datatype="Number" originalValue="" mask="########" style = "position:absolute;top:0px;left:1px;height:22px;width:49px;background-color:#FFFFFF;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;text-align:Right;" onblur="js.autoValidate(this);" onfocus="js.onFocus(this);" onKeyPress="js.onKeyPress(this, event);">
+<label name="Label4" id="Label4" class="label" style = "position:absolute;top:-1px;left:0px;height:20px;width:218px;background-color:#C0C0C0;color:#FF0000;font-family:Bookman Old Style;font-size:14px;font-style:italic;font-weight:bold;text-align:Center;white-space:NoWrap;">SAD MÓDULO RF</label>
+<button  name="Button1_FX" id="Button1_FX" class="button" tabindex="500" type="Submit" value="" style = "position:absolute;top:152px;left:168px;height:22px;width:31px;background-color:#C0C0C0;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;" onclick="if (js.hasPendingError(this, event)) return;">Ok</button>
+<input type="text" name="TL_FILIAL_WM" id="TL_FILIAL_WM" maxLength="4" class="textbox" tabindex="300" value="" originalClass="Textbox" datatype="Number" originalValue="" mask="####" style = "position:absolute;top:152px;left:104px;height:22px;width:48px;background-color:#FFFFFF;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;text-align:Right;" onblur="js.autoValidate(this);" onfocus="js.onFocus(this);" onKeyPress="js.onKeyPress(this, event);" onkeyup="focusNextTab(this, event);">
+<input type="text" name="MAINT" id="MAINT" maxLength="3" class="textbox" class="inputUpper" tabindex="-1" value="" originalClass="Textbox" datatype="Text" originalValue="" CaseRestriction="UpperCase" mask="" style = "position:absolute;top:2px;left:1px;height:19px;width:30px;font-family:Courier New;font-size:12px;font-style:normal;font-weight:normal;visibility:Hidden;z-index:100;" onblur="js.autoValidate(this);" onfocus="js.onFocus(this);" onKeyPress="js.onKeyPress(this, event);" onkeyup="focusNextTab(this, event);js.validateCase(this, event);">
+<span id="_tagIsProcessing"  style = "background-color:#FFFFFF;height:19px;left:1px;position:absolute;top:572px;width:185px;">
+<input type="hidden" id="__isProcessing" name="__isProcessing" value ="0" style = "background-color:C0C0C0">
+</span>
+<input type="hidden" id="FOOTERPANEL" name="FOOTERPANEL" value="">
+<span id="FOOTERPANEL_span" style = "position:absolute;top:547px;left:1px;height:22px;width:200px;background-color:#FFFFFF;border-top-width:1;font-family:Arial;font-size:11;font-style:normal;font-weight:bold;-moz-box-sizing:border-box;">
+<button  name="BTNSUBMIT" id="BTNSUBMIT" class="button" tabindex="99999" type="Button" value="" style = "position:absolute;top:1px;left:585px;height:21px;width:65px;font-family:Arial;font-size:14px;font-style:normal;font-weight:bold;visibility:Hidden;" onclick="if (js.hasPendingError(this, event)) return;legacySubmit();;">Submit</button>
+</span>
+<input type="text" name="PAGEMSGCODE" id="PAGEMSGCODE" maxLength="5" class="textbox" readonly tabindex="-1" value="" originalClass="Textbox" datatype="Text" originalValue="" mask="" style = "position:absolute;top:2px;left:0px;height:19px;width:50px;background-color:#F2F4F2;border-left-style:None;border-right-style:None;border-style:None;border-color:FFFFFF;color:#FF0000;font-family:Arial;font-size:14px;font-style:normal;font-weight:bold;visibility:Hidden;" onblur="js.autoValidate(this);" onfocus="js.onFocus(this);">
+<input type="text" name="PAGEMSGLIST" id="PAGEMSGLIST" class="textbox" readonly tabindex="-1" value="" originalClass="Textbox" datatype="Text" originalValue="" mask="" style = "position:absolute;top:2px;left:53px;height:19px;width:50px;background-color:#F2F4F2;border-left-style:None;border-right-style:None;border-style:None;border-color:FFFFFF;color:#FF0000;font-family:Arial;font-size:14px;font-style:normal;font-weight:bold;visibility:Hidden;" onblur="js.autoValidate(this);" onfocus="js.onFocus(this);">
+<input type="hidden" id="onSession" name="onSession">
+<input type="hidden" id="form_status" name="form_status" value="">
+<input type="hidden" id="form_mode" name="form_mode" value="">
+<input type="hidden" id="form_activeControl" name="form_activeControl" value="TL_USUARIO">
+<input type="hidden" id="form_activePanel" name="form_activePanel" value="">
+<input type="hidden" id="form_invokedMethod" name="form_invokedMethod" value="">
+</form>
+<script type="text/javascript">
+function showOutputPage(pPage)
+{
+	var popupOutputPage = 'uLegacy.LegacyOutputPage?OutputPageNumber=' + pPage;
+	var popupName = 'PopupOutputPage' + pPage;
+	var parameter = 'alwaysRaised=yes, titleBar=no, menuBar=no, status=no, scrollBars=yes, resizable = yes';
+    var popupWindow = window.open(popupOutputPage, popupName, parameter);
+}
+function run(pReport)
+{
+	var parameter = 'alwaysRaised=yes, titleBar=no, menuBar=no, status=no, scrollBars=yes, resizable = yes';
+    var popupWindow = window.open(pReport, 'Popup', parameter);
+}
+function showReport(pReport, pBackup)
+{
+	var popupBackup = 'uLegacy.LegacyBackup?BackupName=' + pBackup;
+	var popupName = 'Popup' + pReport;
+	var parameter = 'alwaysRaised=yes, titleBar=no, menuBar=no, status=no, scrollBars=yes, resizable = yes';
+    var popupWindow = window.open(popupBackup, popupName, parameter);
+}
+function selectContent(pTextbox)
+{
+    try
+    {
+	    pTextbox.focus();
+	    pTextbox.select();
+    }
+    catch(Err)
+    {
+    	//Ignore Exception
+    }
+}
+function focusNextTab(pTextbox, pEvent)
+{
+	if ((pEvent.keyCode != 9) && (pEvent.keyCode != 16) && (pEvent.keyCode != 35) &&
+		(pEvent.keyCode != 36) && (pEvent.keyCode != 39) && (pEvent.keyCode != 37) &&
+		(pEvent.keyCode != 38) && (pEvent.keyCode != 40)) {
+
+		if ( pTextbox.getAttribute("datatype") != null && pTextbox.getAttribute("datatype").toUpperCase() == "TEXT" && pTextbox.style.textAlign != null && pTextbox.style.textAlign.toUpperCase() == "RIGHT" ) {
+		    return;
+		}
+		if (pTextbox.value.length >= pTextbox.maxLength) {
+			var wForm = document.getElementById("form");
+			var wNextControl = jNextTab(pTextbox);
+		    var wTagName;
+		    try
+		    {
+			    wForm[wNextControl].focus();
+			    wForm[wNextControl].select();
+		    }
+		    catch(Err)
+		    {
+		    	//Ignore Exception
+		    }
+		}
+	}
+}
+function jNextTab(pTextbox) {
+	var wForm = document.getElementById("form");
+	var i = 0;
+    var flag = 0
+	var nextTab = -1;
+	while (i < wForm.length) {
+		if ((wForm[i].tabIndex != -1) && (wForm[i].type != "hidden") && (wForm[i].style.visibility.toUpperCase() != "HIDDEN") && ((wForm[i].readonly == null) || (wForm[i].readonly != null && wForm[i].readonly == false))) {
+			if ((wForm[i] == pTextbox) && (wForm[i + 1].tabIndex == pTextbox.tabIndex)) {
+				if ((wForm[i + 1].tabIndex != -1) && (wForm[i + 1].type != "hidden")) {
+					nextTab = i + 1;
+					break;
+				}
+            } else if (wForm[i] == pTextbox){
+                flag = 1;
+			} else {
+				if (wForm[i].tabIndex > pTextbox.tabIndex) {
+					if (nextTab == -1) {
+						nextTab = i;
+					} else if (wForm[i].tabIndex < wForm[nextTab].tabIndex) {
+						nextTab = i;
+                    }
+                } else if ((wForm[i].tabIndex == pTextbox.tabIndex) && (flag == 1)) {
+                        nextTab = i;
+                        break;
+				}
+			}
+		}
+		i++;
+	}
+	if (nextTab == -1) {
+		i = 0;
+		while (i < wForm.length) {
+			if ((wForm[i].tabIndex != -1) && (wForm[i].type != "hidden") && (wForm[i].style.visibility.toUpperCase() != "HIDDEN") && ((wForm[i].readonly == null) || (wForm[i].readonly != null && wForm[i].readonly == false))) {
+				if (nextTab == -1) {
+					nextTab = i;
+				} else if (wForm[i].tabIndex < wForm[nextTab].tabIndex) {
+					nextTab = i;
+				}
+			}
+			i++;
+		}
+	}
+	return nextTab;
+}
+function form_jEndHomeTab(pEvent)
+{
+	if(pEvent.keyCode == 36)
+	{
+		var i = 0;
+		var tabIndex = 0;
+		var homeTab = 0;
+		var wTagName;
+		var wForm = getElement("form");
+		while (i < wForm.length) {
+			if ((wForm[i].tabIndex != -1) && (wForm[i].type != "hidden") && (wForm[i].style.visibility.toUpperCase() != 'HIDDEN') && ((wForm[i].readonly == null) || (wForm[i].readonly != null && wForm[i].readonly == false))) {
+				if(tabIndex == 0 || wForm[i].tabIndex < tabIndex){
+					tabIndex = wForm[i].tabIndex;
+					homeTab = i;
+				}
+			}
+			i++;
+		}
+		if(homeTab != 0){
+		    try
+		    {
+				wForm[homeTab].focus();
+			    wForm[homeTab].select();
+		    }
+		    catch(Err)
+		    {
+		    	//Ignore Exception
+		    }
+		}
+	}
+	else if(pEvent.keyCode == 35)
+	{
+		var i = 0;
+		var tabIndex = 0;
+		var homeTab = 0;
+		var wForm = getElement("form");
+		while (i < wForm.length) {
+			if ((wForm[i].tabIndex != -1) && (wForm[i].type != "hidden") && (wForm[i].style.visibility.toUpperCase() != 'HIDDEN') && ((wForm[i].readonly == null) || (wForm[i].readonly != null && wForm[i].readonly == false))) {
+				if(tabIndex == 0 || wForm[i].tabIndex > tabIndex){
+					tabIndex = wForm[i].tabIndex;
+					homeTab = i;
+				}
+			}
+			i++;
+		}
+		if(homeTab != 0){
+		    try
+		    {
+			   wForm[homeTab].focus();
+			   wForm[homeTab].select();
+		    }
+		    catch(Err)
+		    {
+		    	//Ignore Exception
+		    }
+		}
+	}
+}
+function form_jNumPadPlusXmit()
+{
+  if(event.keyCode == 107)
+  {
+    event.keyCode = 0;
+    if(form.__isProcessing.value == "0")
+    {
+        form.__isProcessing.value = "1";
+        form_submit();
+    }
+    else
+    {
+	    var wPAGEMSG = getElement("PAGEMSG");
+	    if (wPAGEMSG != null)
+	    {
+             wPAGEMSG.value = "Página já transmitida. Aguarde...";
+	    }
+        else
+        {
+            alert("Página já transmitida. Aguarde...");
+        }
+    }
+  }
+}
+function js_onkey()
+{
+  var pEvent = window.event;
+  form_jEndHomeTab(pEvent);
+  if(event.keyCode == 8)
+  {
+      window.event.keyCode = 0;
+      return;
+  }
+  return disableCtrlKeyCombination(event)
+}
+function legacySubmit()
+{
+    if(form.__isProcessing.value == "0")
+    {
+        form.__isProcessing.value = "1";
+        form_submit();
+    }
+    else
+    {
+	    var wPAGEMSG = getElement("PAGEMSG");
+	    if (wPAGEMSG != null)
+	    {
+             wPAGEMSG.value = "Página já transmitida. Aguarde...";
+	    }
+        else
+        {
+            alert("Página já transmitida. Aguarde...");
+        }
+    }
+}
+function jRecallTeach()
+{
+  var teachWindow = null;
+  teachWindow = window.open("uLegacy.LegacyTeach","Doc", "toolbar=0, menubar=0,scrollbars=1,location=0,resizable=1,top=50,left=150,height=450,width=615");
+  teachWindow.focus();
+}
+function jCallTeach()
+{
+  window.setTimeout(function(){jRecallTeach()}, 1000);
+}
+function disableCtrlKeyCombination(e)
+{
+    var key;
+    var isCtrl;
+    if(window.event)
+    {
+        key = window.event.keyCode;     //IE
+        if(window.event.ctrlKey)
+            isCtrl = true;
+        else
+            isCtrl = false;
+    }
+    else
+    {
+        key = e.which;     //firefox
+        if(e.ctrlKey)
+            isCtrl = true;
+        else
+            isCtrl = false;
+    }
+    //if ctrl is pressed check if other key is in forbidenKeys array
+    if(isCtrl)
+    {
+        //case-insensitive comparation
+        if(String.fromCharCode(key).toLowerCase() == 'n')
+        {
+            if(window.event)
+                window.event.keyCode = 0;
+            else
+                e.which = 0;
+            alert('A tecla CTRL-N se encontra desabilitada.');
+            return false;
+        }
+    }
+    return true;
+}
+</script>
+</body>
+</html>
+<script language = "JavaScript">
+function form_showAlerts()
+{
+}
+function formatCurrency(obj, evt)
+{
+	// ** Em modo de consulta, nenhum caracter será interpretado **
+	if(document.getElementById("form_mode").value == "PrepareQuery")
+		return;
+		
+	// ** Validação de campo protedigo contra alteração de acordo com a operação do bloco **
+	var wRestriction = js_getEditRestriction(obj);
+	
+	if(wRestriction != null)
+	{
+		// Se algumas das teclas SHIFT ou ALT ou CONTROL estiverem pressionadas, nenhuma mensagem será mostrada
+		if(!evt.ctrlKey && !evt.altKey && !evt.shiftKey)
+		{
+			if(wRestriction == "INSERT")
+				alert(MSG_0201); // Field is protected against insert
+			else
+				alert(MSG_0202); // Field is protected against update
+		}
+		
+		evt.returnValue = false;
+		return;
+	}
+
+	var wValue = obj.value;
+	var wNegative = wValue.charAt(0) == "-";
+	
+	// Caso a propriedade maxLength não tenha sido definida, será assumido o valor 2147483647.
+	// No IE é retornado o valor 2147483647 caso a propriedade não exista.
+	// Já no FF é retornado null, por isso foi feito o OR neste valor.
+	var MAXLENGTH = obj.getAttribute("maxLength") || 2147483647;
+	
+	var DECIMALS = parseInt(obj.getAttribute("Decimals") || "0", 10);
+	var DECIMAL_SEPARATOR = form.getAttribute("decimalSeparator");
+	var GROUPING_SEPARATOR = form.getAttribute("groupingSeparator"); 
+	
+	// ** Função usada para preenchimento **
+	var dupstr = function(pChar, pLength)
+	{
+		var wText = "";
+		for(var j = 0; j < pLength; ++j)
+			wText += pChar;
+		return wText;
+	}
+	
+	// Caso o evento não seja passado como parâmetro,
+	// o valor do objeto deverá conter um valor numérico (float) válido.
+	// Caso tal valor não seja um float válido, será mostrada uma mensagem
+	// alertando o usuário de tal problema.
+	if(evt == null)
+	{
+		var re = new RegExp("^-?([0-9]{1," + MAXLENGTH + "})?[\\.]?(?:([0-9]+))?$");
+		var arr = re.exec(wValue);
+		
+		if(arr == null)
+		{
+			alert("Invalid number \"" + wValue + "\". (item id: " + obj.id + ")");
+			obj.value = obj.getAttribute("originalValue") || "";
+			return;
+		}
+		else
+		{
+			var dec_part = arr[2] + dupstr("0", DECIMALS - Math.min(arr[2].length, DECIMALS));
+			wValue = arr[1] + dec_part.substring(0, DECIMALS);
+		}
+	}
+	else
+	{
+		var kc = evt.keyCode;
+		wValue = wValue.replace(/[^0-9]/g, "").replace(/^[0]+/, "");
+		
+		// ** Cancela o evento por padrão **
+		evt.returnValue = false;
+
+		// ** Interpreta caracteres numéricos (números na parte superior do teclado e do numpad também) **
+		if((kc >= 48 && kc <= 57) || (kc >= 96 && kc <= 105))
+		{
+			if(evt.shiftKey || evt.ctrlKey || evt.altKey)
+				return;
+			wValue += String.fromCharCode(kc >= 96 ? kc - 48 : kc);
+		}
+		else // ** Interpreta outros caracteres **
+		{
+			switch(kc)
+			{
+				case 46: // DELETE
+					var r = document.selection.createRange();
+					
+					if(r.text == "")
+					{
+						r.moveEnd("character");
+					}
+					r.execCommand("delete");
+					r.moveEnd("textedit");
+					r.moveStart("textedit", -1);
+
+					wValue = r.text.replace(/[^0-9]/g, "").replace(/^[0]+/, "");
+					break;
+				case 110: // VÍRGULA (numpad)
+				case 188: // VÍRGULA
+					if(evt.shiftKey || evt.altKey || evt.ctrlKey)
+						return;
+					if(DECIMAL_SEPARATOR == ",")
+						wValue += dupstr("0", DECIMALS);
+					break;
+				case 194: // PONTO (numpad)
+				case 190: // PONTO
+					if(evt.shiftKey || evt.altKey || evt.ctrlKey)
+						return;
+					if(DECIMAL_SEPARATOR == ".")
+						wValue += dupstr("0", DECIMALS);
+					break;
+				case 9: // TAB ou Shift + TAB
+					evt.returnValue = true;
+					return;
+				case 67: // Letra C
+					// Habilita o CTRL+C
+					if(evt.ctrlKey)
+						evt.returnValue = true;
+					return;
+				/** PASTE será implementado posteriormente **
+				case 86: // CTRL+V
+					if(!evt.ctrlKey || evt.shiftKey || evt.altKey)
+						return;
+					wValue = window.clipboardData.getData("Text");
+					if(wValue == null)
+						return;
+					break;
+				//*/
+				case 189: // SINAL DE MENOS
+					if(evt.shiftKey)
+						return;
+				case 109: // SINAL DE MENOS (NUMPAD)
+					wNegative = true;
+					break;
+				case 187: // SINAL DE MAIS
+					if(!evt.shiftKey)
+						return;
+				case 107: // SINAL DE MAIS (NUMPAD)
+					wNegative = false;
+					break;
+				case 27: // ESC
+					evt.returnValue = true;
+					return;
+				case 8: // BACKSPACE
+					if(wValue == "")
+						return;
+					else
+						wValue = wValue.substring(0, wValue.length-1);
+					break;
+				case 16: // SHIFT
+				case 17: // CTRL
+				case 18: // ALT
+				case 112: // F1
+				case 113: // F2
+				case 114: // F3
+				case 115: // F4
+				case 116: // F5
+				case 117: // F6
+				case 118: // F7
+				case 119: // F8
+				case 120: // F9
+				case 121: // F10
+				case 122: // F11
+				case 123: // F12
+				case 35: // HOME
+				case 36: // END
+				case 37: // SETA PARA A DIREITA
+				case 39: // SETA PARA DIREITA
+					evt.returnValue = true;
+					return;
+				default: // ** Qualquer outra tecla digitada será ignorada **
+					alert(MSG_0200); // Invalid KeyCode on numeric fields
+					return;
+			}
+		}
+	}
+	
+	var len = wValue.length;
+	var pseudo_len = len - DECIMALS;
+
+	pseudo_len = pseudo_len + Math.ceil(pseudo_len / 3) - 1;
+	
+	if(DECIMALS > 0)
+		pseudo_len += DECIMALS + 1; // decimal mais o separador de decimal
+		
+	// pseudo_len tem que ser comparado com o operador >= pois um dígito é sempre reservado para o sinal de MENOS.
+	if(MAXLENGTH > 0 && pseudo_len >= MAXLENGTH)
+	{
+		if(evt)
+		{
+			evt.returnValue = false;
+		}
+		else // caso formatCurrency seja chamado sem o parâmetro event
+		{
+			obj.value = obj.getAttribute("originalValue") || "";
+			alert("Maxlength overflow for \"" + wValue + "\", allowed length is " + MAXLENGTH + " (item id: " + obj.id + ")");
+		}
+		return;
+	}
+
+	var wOutput = "";
+	var read_count = 0;
+	var group_count = -DECIMALS;
+
+	for(var i = len-1; i >= 0; --i, ++read_count)
+	{
+		if(DECIMALS > 0 && read_count == DECIMALS)
+		{
+			wOutput = DECIMAL_SEPARATOR + wOutput;
+		}
+	
+		if(group_count++ == 3)
+		{
+			wOutput = GROUPING_SEPARATOR + wOutput;
+			group_count = 1;
+		}
+		wOutput = wValue.charAt(i) + wOutput;
+	}
+
+	// ** Formata o número com o número de casas definido pelo atributo "Decimals" **
+	if(DECIMALS > 0 && len <= DECIMALS)
+	{
+		wOutput = "0" + DECIMAL_SEPARATOR + dupstr("0", DECIMALS - len) + wOutput;
+	}
+
+	// ** Caso o número seja negativo, adiciona o sinal de menos no início do texto **
+	if(wNegative && len > 0)
+	{
+		wOutput = "-" + wOutput;
+	}
+
+	obj.createTextRange().text = wOutput;
+}
+function js_getEditRestriction(obj)
+{
+	/**
+	*	Validação de campo protedigo contra alteração de acordo com a operação do bloco
+	*
+	*  	@return UPDATE - caso seja proibido editar o campo na operação de UPDATE (status CHANGED)
+	*	@return INSERT - caso seja proibido editar o campo na operação de INSERT (status INSERT)
+	*	@return null - caso não exista restrição de edição.
+	***/
+
+	var wActivePanel  = document.getElementById("form_activePanel");
+	
+	if (wActivePanel != null && wActivePanel.value != "")
+	{
+		// Allow Insert and Allow Update validation
+		var wRowId = document.getElementById(wActivePanel.value + "_rowid");
+		var wRecordStatus = document.getElementById(wActivePanel.value + "_recordStatus");
+	  
+		if ( (wRecordStatus.value == "" && wRowId.value == "") || wRecordStatus.value == "INSERT")
+		{
+			if(obj.getAttribute("allowInsert") == "False")
+			{
+				return "INSERT";
+			}
+		}
+		else
+		{
+			if(obj.getAttribute("allowUpdate") == "False")
+			{
+				return "UPDATE"; // Field is protected against update
+			}
+		}
+	}
+	return null;
+}
+
+function parseCurrency(value)
+{
+	var DECIMAL_SEPARATOR = form.getAttribute("decimalSeparator"); 
+	var re = new RegExp("[^0-9" + DECIMAL_SEPARATOR + "-]", "g");
+	return parseFloat(value.replace(re, "").replace(DECIMAL_SEPARATOR, "."));
+}
+
+
+function userSubmit()
+{
+    form_submit();
+}
+
+
+
+</script>

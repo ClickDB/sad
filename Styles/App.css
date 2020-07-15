@@ -1,0 +1,92 @@
+html {
+    touch-action: none;
+    height: 100%;
+}
+
+body {
+    background-color: #FFFFFF;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+span {
+   font-family: VERDANA;
+   background-color: #FFFFFF;
+   color: #000000;
+   text-align: left;
+}
+
+table {
+   font-family: VERDANA;
+}
+
+label { 
+   white-space: nowrap;
+}
+
+input {
+   font-family: VERDANA;
+   text-align:left;
+   padding: 0.5px; 
+   height: 17px !important;
+   line-height: normal;  
+   border: 1px solid black;
+}
+
+select {
+   font-family: VERDANA;
+   padding: 0px;
+}
+
+button {
+    white-space: nowrap;
+}
+
+button:disabled {
+    background-color: #C0C0BF;
+    border: 1px #808080 solid;
+    border-radius: 1px;
+}
+
+fieldset {
+  min-width: 0;
+  padding:0px;
+}
+
+legend {
+    position:relative;
+    top:0px;
+    left:0px;
+}
+
+.inputUpper {
+   text-transform: uppercase
+}
+
+.inputLower {
+   text-transform: lowercase
+}
+
+#auxProxTela {
+   height: 30px !important;
+}
+
+#FOOTERPANEL_span {
+    left: 500px  !important;
+    width: 2px !important;
+}
+
+#_tagIsProcessing {
+    left:500px  !important;
+    width: 2px   !important;
+}
+
+
+#menusad {
+    height:700px  !important;
+}
+
+.link-whitout-decoration a {
+  text-decoration: none;
+  vertical-align: middle;
+}
