@@ -24,6 +24,12 @@
 <script src="../Scripts/InnovationPanel.js"></script>
 <script src="../Scripts/InnovationPopup.js"></script>
 <script src="../Scripts/InnovationGrid.js"></script>
+<script>
+     password.onfocus = function () {
+        window.scrollTo(0, 0);
+        document.body.scrollTop = 0;
+    }
+</script>
 </head>
 <body id="body" onload="js.onLoad();" onfocus="js.focusHandler();" onkeydown="js.onKeyDown(event);" onkeyup="js.onKeyUp(event);" style="background-color:#FFFFFF;color:#000000;font-family:Verdana;font-size:11px;font-style:normal;font-weight:normal;left:0px;top:0px;width:230px;height:298px;" >
 <form Name = "form" id = "form" method = "post" CurrentUrl = "RFABR" LastKeyCode = "" LastShiftKey = "" LastAltKey = "" LastCtrlKey = "" LastAction = "" statusMsg = "" decimalSeparator = "," groupingSeparator = "." exception = "false" exceptionMessage = "" traceMsg = "" onF9 = "js.showBoundPopup()" onAltF12 = "js.resetValidate()" onArrowUp = "js.rollUp()" onArrowDown = "js.rollDown()" onHome = "setFocus('TL_USUARIO');" onEnd = "setFocus('Button1_FX');" onEnter = "legacySubmit()" onclick="js.onClick();" onkeydown="js_onkey();" onsubmit="js_submitHandler();">
