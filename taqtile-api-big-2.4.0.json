@@ -1,0 +1,1067 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "BIG - API",
+    "description": "This is the documentation that will be used for BIG project",
+    "version": "2.4.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/taqtile/api-big/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    },
+    {
+      "url": "https://virtserver.swaggerhub.com/rodlim/BIG/2.0.1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "API - Taqtile",
+      "description": "Rotas a serem implementadas pela Taqtile"
+    },
+    {
+      "name": "API - BIG",
+      "description": "Rotas a serem implementadas pelo BIG"
+    }
+  ],
+  "paths": {
+    "/clusters": {
+      "get": {
+        "tags": [
+          "API - Taqtile"
+        ],
+        "summary": "Envio de listas de clusters de usuários (periodicidade de uma semana).",
+        "operationId": "save-clusters",
+        "parameters": [
+          {
+            "name": "client-id",
+            "in": "header",
+            "description": "Id utilizado para a autenticão das chamadas.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "client-secret",
+            "in": "header",
+            "description": "Secret utilizado para a autenticão das chamadas.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Array de objetos, representando as informações dos cluster.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Clusters"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "id": 1,
+                      "name": "general",
+                      "description": "Cluster de ofertas genéricas",
+                      "usersQuantity": 10000
+                    },
+                    {
+                      "id": 2,
+                      "name": "Mercearia",
+                      "description": "Cluster de ofertas exclusivas",
+                      "usersQuantity": 100
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiTaqtileResponse"
+                },
+                "example": {
+                  "data": null,
+                  "errors": [
+                    {
+                      "code": 401,
+                      "name": "UnauthorizedError",
+                      "message": "Usuário sem credenciais válidas."
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/offer/{id}": {
+      "delete": {
+        "tags": [
+          "API - Taqtile"
+        ],
+        "summary": "Requisição para a remoção de uma oferta da lista de ofertas disponóveis aos usuários  via app, o id na rota se refere ao id da oferta.",
+        "operationId": "remove-offer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da oferta a ser removida",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "client-id",
+            "in": "header",
+            "description": "Id utilizado para a autenticão das chamadas.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "client-secret",
+            "in": "header",
+            "description": "Secret utilizado para a autenticão das chamadas.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiTaqtileResponse"
+                },
+                "example": {
+                  "data": null,
+                  "errors": [
+                    {
+                      "code": 401,
+                      "name": "UnauthorizedError",
+                      "message": "Usuário sem credenciais válidas."
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiTaqtileResponse"
+                },
+                "example": {
+                  "data": null,
+                  "errors": [
+                    {
+                      "code": 404,
+                      "name": "NotFoundError",
+                      "message": "A oferta com esse id não foi encontrada."
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/offer/redeem/{id}": {
+      "post": {
+        "tags": [
+          "API - Taqtile"
+        ],
+        "summary": "Requisição para atualizar a quantidade comprada de uma oferta, o id na rota se refere ao id da oferta.",
+        "operationId": "redeem-offer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da oferta o qual a quantidade comprada será atualizada",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "client-id",
+            "in": "header",
+            "description": "Id utilizado para a autenticão das chamadas.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "client-secret",
+            "in": "header",
+            "description": "Secret utilizado para a autenticão das chamadas.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objeto representa o oferta e quantidade a ser atualizada",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RedeemOffer"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiTaqtileResponse"
+                },
+                "example": {
+                  "data": null,
+                  "errors": [
+                    {
+                      "code": 401,
+                      "name": "UnauthorizedError",
+                      "message": "Usuário sem credenciais válidas."
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiTaqtileResponse"
+                },
+                "example": {
+                  "data": null,
+                  "errors": [
+                    {
+                      "code": 404,
+                      "name": "NotFoundError",
+                      "message": "A oferta com esse id não foi encontrada."
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth": {
+      "post": {
+        "tags": [
+          "API - BIG"
+        ],
+        "summary": "Autenticação",
+        "operationId": "auth",
+        "requestBody": {
+          "description": "Objeto contento client id e secret",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success. Token de autenticação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Auth"
+                },
+                "example": {
+                  "data": null,
+                  "errors": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loyalty/promocoes": {
+      "get": {
+        "tags": [
+          "API - BIG"
+        ],
+        "summary": "Busca da lista de ofertas (periodicidade de um dia).",
+        "operationId": "list-offers",
+        "responses": {
+          "200": {
+            "description": "Success. Array de objetos, representando as informações das ofertas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Offers"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiJobsUnauthorized"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/loyalty/ativarPromocao": {
+      "put": {
+        "tags": [
+          "API - BIG"
+        ],
+        "summary": "Requisição para a ativação de uma oferta",
+        "operationId": "activate-offer",
+        "requestBody": {
+          "description": "Objeto relacionando usuário e oferta a ser ativada.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivateOffer"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success/Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "success": false,
+                      "payload": null,
+                      "error": [
+                        "Promoção não encontrada."
+                      ]
+                    }
+                  },
+                  "success": {
+                    "value": {
+                      "success": true,
+                      "payload": "Ativação realizada com sucesso",
+                      "error": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiJobsUnauthorized"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/loyalty/cliente/get": {
+      "post": {
+        "tags": [
+          "API - BIG"
+        ],
+        "summary": "Busca de usuário.",
+        "operationId": "get-user",
+        "requestBody": {
+          "description": "Objeto representando o usuário a ser consultado",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "success": {
+                    "value": {
+                      "success": true,
+                      "payload": {
+                        "cpf": "71698036582",
+                        "nome": "João",
+                        "sobrenome": "Silva",
+                        "dt_nascimento": "1980-12-30",
+                        "genero": "M",
+                        "telefone": null,
+                        "celular": "8888888888",
+                        "email": "email_71698036582@gmail.com",
+                        "ativo": true,
+                        "loja": 1234,
+                        "dt_criacao": "2020-10-05T20:20:53.743",
+                        "dt_modificacao": null,
+                        "endereco": {
+                          "cep": "03509000",
+                          "estado": "PE",
+                          "cidade": "Recife",
+                          "logradouro": "Av Boa Viagem",
+                          "bairro": "bairro",
+                          "numero": "100",
+                          "complemento": "apto 1000"
+                        }
+                      },
+                      "error": null
+                    }
+                  },
+                  "error": {
+                    "value": {
+                      "success": true,
+                      "payload": null,
+                      "error": "Cliente não encontrado."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/loyalty/cliente/atualizar": {
+      "put": {
+        "tags": [
+          "API - BIG"
+        ],
+        "summary": "Atualizar de usuário.",
+        "operationId": "update-user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success/Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "success": false,
+                      "payload": null,
+                      "error": "'neighborhood' é obrigatório"
+                    }
+                  },
+                  "success": {
+                    "value": {
+                      "success": true,
+                      "payload": "Usuário adicionado com sucesso",
+                      "error": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiJobsUnauthorized"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/loyalty/cliente/inserir": {
+      "post": {
+        "tags": [
+          "API - BIG"
+        ],
+        "summary": "Requisição para cadastro de usuário.",
+        "operationId": "save-user",
+        "requestBody": {
+          "description": "Objeto representando o usuário a ser cadastrado",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success/Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "success": false,
+                      "payload": null,
+                      "error": "'neighborhood' é obrigatório"
+                    }
+                  },
+                  "success": {
+                    "value": {
+                      "success": true,
+                      "payload": "Usuário adicionado com sucesso",
+                      "error": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiJobsUnauthorized"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/gesprom/agrupamentos": {
+      "get": {
+        "tags": [
+          "API - BIG"
+        ],
+        "summary": "Busca da lista de agrupamento (periodicidade de um dia).",
+        "operationId": "list-regions",
+        "responses": {
+          "200": {
+            "description": "Success. Array de objetos, representando as informações das regiões.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Regions"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiJobsUnauthorized"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Auth": {
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Token de autenticação"
+          }
+        },
+        "description": "Token de autenticação"
+      },
+      "AuthRequestBody": {
+        "properties": {
+          "client_id": {
+            "type": "string",
+            "description": "Usuário"
+          },
+          "client_secret": {
+            "type": "string",
+            "description": "Senha"
+          }
+        },
+        "description": "Object de autenticação"
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "type": "string",
+            "description": "Mensagem referente à reposta da API."
+          },
+          "success": {
+            "type": "boolean",
+            "description": "Booleano que indica se a requisição foi completada com sucesso"
+          },
+          "error": {
+            "type": "string",
+            "description": "Mensagem de erro"
+          }
+        },
+        "description": "Objeto padrão de resposta da API Jobs."
+      },
+      "ApiJobsUnauthorized": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Título do erro"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descrição do erro"
+          }
+        },
+        "description": "Mensagem de erro do Api Jobs"
+      },
+      "ApiTaqtileResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "description": "Resultado da API caso a chamada tenha sido um sucesso. É null em caso de erro."
+          },
+          "errors": {
+            "type": "array",
+            "description": "Array de erros da API, não existe em caso de sucesso.",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        },
+        "description": "Objeto padrão de resposta da API - Taqtile."
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "Código de erro da chamada"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nome do erro da chamada"
+          },
+          "message": {
+            "type": "string",
+            "description": "Nome do erro da chamada"
+          }
+        },
+        "description": "Objeto padrão de erro"
+      },
+      "Clusters": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "description": "Array de clusters",
+            "items": {
+              "$ref": "#/components/schemas/Cluster"
+            }
+          }
+        }
+      },
+      "Cluster": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Identificador único do cluster, esse id deverá ser salvo poís todas as campanhas desse cluster deverão conter esse identificador"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nome do cluster, caso seja necessário exibir no Gesprom"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descrição das características do cluster, para facilitar o entendimento da área comercial no momento de escolher os produtos para o cluster"
+          },
+          "usersQuantity": {
+            "type": "number",
+            "description": "Quantidade total de usuários do cluster, caso seja necessário exibir essa informação no Gesprom"
+          }
+        },
+        "description": "Informações relevantes de um cluster"
+      },
+      "Offers": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Booleano que indica se a requisição foi completada com sucesso"
+          },
+          "error": {
+            "type": "string",
+            "description": "Mensagem de erro"
+          },
+          "payload": {
+            "type": "array",
+            "description": "Array de ofertas",
+            "items": {
+              "$ref": "#/components/schemas/Offer"
+            }
+          }
+        },
+        "description": "Resposta da lista de ofertas"
+      },
+      "Offer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Identificador único da oferta, utilizado para ativar essa oferta no Loyalt. Portanto será necessário está de acordo com as promoções enviadas para o Loyalt"
+          },
+          "discount": {
+            "type": "number",
+            "description": "Valor do desconto da oferta, valor float do % de desconto independente da mecânica. Será utilizado na ordenação de oferta por desconto."
+          },
+          "discountDescription": {
+            "type": "string",
+            "description": "Valor descritivo do desconto, texto de descrição do desconto da oferta que será exibido no App. Por exemplo *Leve três, pague dois*."
+          },
+          "title": {
+            "type": "string",
+            "description": "Título da oferta que será exibido no App"
+          },
+          "imageUrl": {
+            "type": "string",
+            "description": "URL da imagem referente à oferta que será exibida no App. Necessário ser uma URL com HTTPS"
+          },
+          "clusterIds": {
+            "type": "array",
+            "description": "Identificadores únicos do clusters referentes à oferta. Mesmo ID recebido no serviço semanal de criação de cluster",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expirationDate": {
+            "type": "string",
+            "description": "Data de expiração da oferta que será exibido no App",
+            "format": "date-time"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Data de início da oferta para sua exibição no App",
+            "format": "date-time"
+          },
+          "section": {
+            "type": "string",
+            "description": "Categoria da oferta que será utilizada para realizar os agrupamentos de ofertas por categorias no App."
+          },
+          "availableQuantity": {
+            "type": "number",
+            "description": "Quantidade de unidades da oferta disponíveis para o usuário, também será exibido no App"
+          },
+          "regionIds": {
+            "type": "array",
+            "description": "Identificadores únicos das regiões referentes à oferta. Usados para filtragem de exibição da oferta no App",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Informações relevantes de uma oferta exibida no App"
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Campo referente ao primeiro nome do usuário"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Campo referente ao sobrenome nome do usuário"
+          },
+          "cpf": {
+            "type": "string",
+            "description": "CPF do usuário, utilizado para identificar um usuário único"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email do usuário,"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "Data de nascimento do usuário"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Telefone do usuário"
+          },
+          "store": {
+            "type": "string",
+            "description": "id da loja do favorita do usuário"
+          },
+          "termsOfUseVersion": {
+            "type": "string",
+            "description": "versão do aceite dos termo de uso"
+          },
+          "optinAnalytics": {
+            "type": "boolean",
+            "description": "aceite de compartilhar dados de analytics para melhoras experiencia"
+          },
+          "optinHistory": {
+            "type": "boolean",
+            "description": "aceite de uso do histórico de compras para melhorar ofertas"
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "cep": {
+                "type": "string",
+                "description": "CEP do usuário, utilizado na criação de clusters segmentados por região"
+              },
+              "street": {
+                "type": "string",
+                "description": "Campo referente a rua do endereço do usuário"
+              },
+              "houseNumber": {
+                "type": "string",
+                "description": "Campo referente ao número do endereço do usuário"
+              },
+              "complement": {
+                "type": "string",
+                "description": "Campo referente ao complemento do endereço do usuário. Campo não obrigatório"
+              },
+              "neighborhood": {
+                "type": "string",
+                "description": "Campo referente ao bairro do endereço do usuário"
+              },
+              "city": {
+                "type": "string",
+                "description": "Campo referente a cidade do endereço do usuário"
+              },
+              "state": {
+                "type": "string",
+                "description": "Campo referente ao estado do endereço do usuário"
+              }
+            },
+            "description": "Campo referente as informações de endereço do usuário"
+          }
+        },
+        "description": "Informações relevantes de um usuário que serão enviadas para o Loyalt (NCR) após o cadastro de um usuário"
+      },
+      "ActivateOffer": {
+        "type": "object",
+        "properties": {
+          "offerId": {
+            "type": "string",
+            "description": "Identificador único da oferta a ser ativada"
+          },
+          "cpf": {
+            "type": "string",
+            "description": "CPF do usuário que está requisitando a ativação da oferta"
+          }
+        },
+        "description": "Informações relevantes para a ativação de uma oferta, utilizando na integração direta com o Loyalt (NCR)"
+      },
+      "Regions": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Booleano que indica se a requisição foi completada com sucesso"
+          },
+          "error": {
+            "type": "string",
+            "description": "Mensagem de erro"
+          },
+          "payload": {
+            "type": "array",
+            "description": "Array de regiões",
+            "items": {
+              "$ref": "#/components/schemas/Region"
+            }
+          }
+        },
+        "description": "Resposta da lista de regiões"
+      },
+      "Region": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "number",
+            "description": "Código da região"
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Nome da região"
+          },
+          "codigoslojas": {
+            "type": "array",
+            "description": "Array com o código de lojas",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Detalhes de uma região"
+      },
+      "GetUser": {
+        "type": "object",
+        "properties": {
+          "cpf": {
+            "type": "string",
+            "description": "CPF do usuário"
+          }
+        }
+      },
+      "RedeemOffer": {
+        "type": "object",
+        "properties": {
+          "cpf": {
+            "type": "string",
+            "description": "CPF do usuário, utilizado para identificar o usuário único"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Quantidade resgatada da oferta."
+          }
+        },
+        "description": "Informações para atualizar a oferta"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
